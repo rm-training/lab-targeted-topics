@@ -1,0 +1,56 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Targeted Topics - Mastering the DOM</title>
+  <meta charset="utf8" />
+  <link href="/vendor/semantic-ui/semantic.min.css" rel="stylesheet" type="text/css" />
+  <style>
+    #main-nav li {
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body class="ui container">
+  <h1>Demo / Playground</h1>
+
+  <h2>Events & Delegation</h2>
+
+  <nav id="main-nav">
+    <ul class="ui menu">
+      <li class="item"><a href="home.html">Home</a></li>
+      <li class="item"><a href="about.html">About</a></li>
+      <li class="item"><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <script>
+
+    // No delegation
+    const lis = document.querySelectorAll('#main-nav li');
+    lis.forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+
+        // notice that these two may change based on where I click...
+        console.log(e.target, e.currentTarget);
+
+        const href = e.currentTarget.querySelector('a').href;
+        console.log('AJAX Load', href);
+      });
+    });
+
+      // Example of delegation
+      // const nav = document.querySelector('#main-nav');
+      // nav.addEventListener('click', e => {
+      //   e.preventDefault();
+      //   const href = e.currentTarget.querySelector('a').href;
+      //   console.log('AJAX Load', href);
+      // });
+  </script>
+
+
+</body>
+
+</html>

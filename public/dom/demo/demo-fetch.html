@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Targeted Topics - The DOM</title>
+    <meta charset="utf-8">
+
+    <link href="/vendor/semantic-ui/semantic.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="ui container">
+    <h1>Demo / Playground</h1>
+
+    <div class="ui segment" id="special-segment">
+        <button class="ui button" id="main-button">Load Users</button>
+    </div>
+
+    <script>
+        const button = document.getElementById('main-button');
+
+        button.addEventListener('click', () => {
+            fetch('/api/users.json').then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Something went wrong');
+                }
+            }).then(data => {
+                console.log(data);
+            }).catch(error => {
+                console.warn(error);
+            });
+        });
+    </script>
+</body>
+
+</html>

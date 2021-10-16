@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Targeted Topics - Mastering the DOM</title>
+  <meta charset="utf-8">
+
+  <link href="/vendor/semantic-ui/semantic.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="ui container">
+    <h1>Demo / Playground</h1>
+
+    <div class="ui form" id="special-segment">
+      <div class="ui field">
+        <input name="first" type="text" placeholder="Enter a number">
+      </div>
+      <div class="ui field">
+        <input name="second" type="text" placeholder="Enter a number">
+      </div>
+    </div>
+    <div class="ui segment" id="result">
+
+    </div>
+    <script>
+      const myWorker = new Worker('worker.js');
+      const first = document.querySelector('input[name=first]');
+      const second = document.querySelector('input[name=second]');
+      const result = document.getElementById('result');
+
+      first.onchange = function() {
+        myWorker.postMessage([first.value, second.value]);
+        console.log('Message posted to worker');
+      }
+
+      second.onchange = function() {
+        myWorker.postMessage([first.value, second.value]);
+        console.log('Message posted to worker');
+      }
+
+      myWorker.onmessage = function(e) {
+        result.textContent = e.data;
+        console.log('Message received from worker');
+      }
+    </script>
+</body>
+</html>

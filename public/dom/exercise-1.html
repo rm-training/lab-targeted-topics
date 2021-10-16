@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Flag Exercise</title>
+  <meta charset="utf8" />
+  <link href="/vendor/semantic-ui/semantic.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    body {
+      font-size: .7em;
+    }
+
+    #bucket {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+
+      width: 20%;
+    }
+
+    #bucket a,
+    #bucket div,
+    #bucket ul * {
+      display: block;
+      color: red;
+    }
+
+    #bucket li,
+    #bucket li * {
+      color: green;
+    }
+
+    #bucket li p {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+  <script type="module">
+    import findTheFlags from './js/exercise-1.js';
+
+    findTheFlags();
+  </script>
+</head>
+
+<body class="ui container">
+  <div id="container">
+    <h1 class="foo ui dividing header">Find the flag elements.</h1>
+
+    <div class="main">
+      <h2 class="foo">List of Articles:</h2>
+
+      <ul>
+        <li>One</li>
+        <li class="foo">FLAG #1</li>
+        <li>Three</li>
+      </ul>
+
+      <div id="articles" class="foo">
+        <article class="new ui segment">
+          <h3>Article 1</h3>
+
+          <p>
+            This is <a href="#">some</a> body content.
+          </p>
+
+          <p>
+            This is some body content
+            <a href="#"><span>FLAG #2</span></a>
+          </p>
+        </article>
+
+        <article class="new ui segment">
+          <h3>Article 2</h3>
+          <p>This is some body content</p>
+        </article>
+
+        <article id="article-3" class="ui top attached segment">
+          <h3>Article 3</h3>
+          <p>This is some body content.</p>
+          <p>This is some body content.</p>
+          <p>FLAG #5 <span>FLAG #4</span></p>
+          <p>This is some body content.</p>
+        </article>
+
+        <div class="footer ui bottom attached segment">
+          <div>
+            <div>
+              <div></div>
+              <div>
+                <div>FLAG #3</div>
+                <div>NOT A FLAG</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="bucket" class="ui raised blue segment">
+      <h1 class="ui header">The Bucket</h1>
+      <ul>
+        <!--
+            Put the flags in here as <li> elements, in the correct
+            order, and as separate <li> elements.
+          -->
+      </ul>
+    </div>
+  </div>
+</body>
+
+</html>

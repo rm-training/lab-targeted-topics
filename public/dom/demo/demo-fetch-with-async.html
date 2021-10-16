@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Targeted Topics - Async JS</title>
+    <meta charset="utf-8">
+
+    <link href="/vendor/semantic-ui/semantic.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="ui container">
+    <h1>Demo / Playground</h1>
+
+    <div class="ui segment" id="special-segment">
+        <button class="ui button" id="main-button">Load Users</button>
+    </div>
+
+    <script>
+        const button = document.getElementById('main-button');
+
+        button.addEventListener('click', () => {
+            doIt().catch((error) => {
+                console.warn(error);
+            });
+        });
+
+        async function doIt() {
+            const response = await fetch('/api/users.json');
+
+            if (!response.ok) {
+                throw new Error('Something went wrong');
+            }
+            
+            const data = await response.json();
+            
+            console.log(data);
+        }
+    </script>
+</body>
+
+</html>
