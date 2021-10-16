@@ -1,0 +1,18 @@
+{
+  "name": "tt-objects",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine",
+    "exercise-1": "node src/exercise-1.js",
+    "exercise-2": "jasmine spec/exercise-2.spec.js"
+  },
+  "author": "Ryan Morris",
+  "license": "ISC",
+  "dependencies": {
+    "jasmine": "^3.5.0",
+    "semantic-ui-css": "^2.4.1"
+  },
+  "devDependencies": {}
+}
