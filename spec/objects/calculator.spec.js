@@ -1,4 +1,4 @@
-import Calculator from "../../src/objects/calculator-solved.js";
+import Calculator from "../../public/objects/calculator-solved.js";
 
 describe("Targeted Topics - Objects - Exercise 2", function () {
 

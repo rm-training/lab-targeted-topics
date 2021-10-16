@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Targeted Topics - Async JS</title>
+  <meta charset="utf8" />
+  <link href="/vendor/semantic-ui/semantic.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="ui container">
+  <h1>Exercise 1</h1>
+
+  <h3>Part 1</h3>
+  <p>Implement the "listenTo" function so that it:</p>
+
+  <ul>
+    <li>Takes two args, the element and the event...</li>
+    <li>Returns a new promise</li>
+    <li>Resolves when the event occurs</li>
+    <li>Resolves to the event object</li>
+    <li>Don't worry about rejection</li>
+  </ul>
+
+  <p>Make sure the button logs when it is clicked with your new `listenTo` function in place.</p>
+
+  <h3>Take note: this handles the event <em>once</em>... think about why that is.</h3>
+
+  <h3>Part 2 (bonus)</h3>
+  <p>Implement a "delay" function that:</p>
+
+  <ul>
+    <li>Accepts one argument, "ms" - the number of milliseconds to delay by</li>
+    <li>Returns a promise that resolves after the specified timout</li>
+  </ul>
+
+  <p>
+    Extend the .then() chain and use your "delay" function so the
+    button element is removed from the page 5 seconds after the user clicks it.
+  </p>
+
+  <div id="primary-button" class="ui primary button">
+    Click me...
+  </div>
+
+  <script>
+
+    // broke this out for visibility (while teaching)
+    const eventConfig = {
+      once: true,
+    };
+
+    // Part 1: write your 'listenTo' function here
+    function listenTo(element, event) {
+      // @todo - make a promise that resolves when a user clicks the element
+      // @todo - the promise should resolve to the event object...
+
+      // @todo return a promise
+      return new Promise((resolve, reject) => {
+        element.addEventListener(event, (e) => {
+          resolve(e);
+        }, eventConfig); // this is me being nice...
+      });
+    }
+
+    function delay(ms) {
+      return new Promise((resolve, reject) => {
+        setTimeout(resolve, ms);
+      });
+    }
+
+    // Part 2: write your 'delay' function here
+    // @todo - write the function that accepts one arg, "ms"
+    // @todo - it should return a promise
+    // @todo - the promise is resolved when a timeout is reached
+
+    const button = document.getElementById('primary-button');
+
+    // Part 2: You'll likely extend this .then() chain
+    listenTo(button, 'click')
+      .then((e) => {
+        console.log('This element was clicked:', e.target);
+      })
+      .then(e => {
+        // interesting...
+        // this handler is immediately applied and triggered
+        // bubbling at work!
+        // I need to build in some delay to avoid a "double click"
+        // ala: button click -> promise resolves -> handler added -> bubbles up -> body click
+        return listenTo(document.body, 'click');
+      })
+      .then(() => {
+        console.log('Body was clicked');
+      })
+      .then(() => delay(500))
+      .then(() => {
+        button.remove();
+      })
+    // @todo - add another .then() for your delay()
+    // @todo - and another .then() for your button removal
+
+  </script>
+
+</body>
+
+</html>

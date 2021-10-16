@@ -1,0 +1,79 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Targeted Topics - Web Components</title>
+  <meta charset="utf8" />
+  <link href="/vendor/semantic-ui/semantic.min.css" rel="stylesheet" type="text/css" />
+  <style>
+    #main-nav li {
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body class="ui container">
+    <h1>Demo / Playground</h1>
+    
+    <h2>Event Loops (in detail)</h2>
+
+    <script>
+
+      // I want to see if
+      // the microtask queue comes after callbacks
+
+      document.body.addEventListener('click', () => {
+        //console.group('A click on the page');
+        console.log('Event Handler: In 1st event callback');
+
+        setTimeout(() => {
+          console.log('Timout: In timeout callback');
+      }, 0);
+
+        requestAnimationFrame(() => {
+          console.log('Request Animation Frame: Animation Frame');
+        });
+
+        requestIdleCallback(() => {
+          //console.log('Request Idle Callback: Idle');
+          console.groupEnd();
+        })
+    });
+
+    document.body.addEventListener('click', () => {
+      console.log('Event Handler: In 2nd callback');
+    });
+
+    document.body.addEventListener('click', () => {
+        console.log('Event Handler: In 3rd event callback');
+
+        Promise.resolve().then(() => {
+          console.log('Microtask: Immediately Resolved Promise in 3rd callback');
+        });
+
+        new Promise((resolve) => {
+            resolve(1);
+        }).then(() => {
+           console.log('Microtask: Second promise in 3rd calblack');
+        });
+
+        new Promise((resolve) => {
+            resolve(1);
+        }).then(() => {
+           console.log('Microtask: Third Promise in 3rd callback');
+        });
+    });
+
+    document.body.addEventListener('click', () => {
+        console.log('Event Handler: In 4th event callback');
+
+        Promise.resolve().then(() => {
+          console.log('Microtask: Promise in 4th callback');
+        });
+    });
+
+    </script>
+
+
+</body>
+</html>

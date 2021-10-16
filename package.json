@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "json-server --watch data/db.json",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
     "objects:1": "node src/objects/exercise-1.js",
@@ -15,6 +16,7 @@
   "dependencies": {
     "jest": "^26.6.3",
     "jest-fetch-mock": "^3.0.3",
+    "json-server": "^0.16.3",
     "semantic-ui-css": "^2.4.1"
   },
   "devDependencies": {}

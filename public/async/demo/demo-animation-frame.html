@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Targeted Topics - Async JS</title>
+    <meta charset="utf8" />
+    <link href="/vendor/semantic-ui/semantic.min.css" rel="stylesheet" type="text/css" />
+
+    <style>
+      #object {
+        font-size: 4rem;
+        line-height: 4rem;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 10px;
+        height: 10px;
+      }
+
+      #other {
+        font-size: 4rem;
+        line-height: 4rem;
+        position: absolute;
+        top: 150px;
+        left: 0;
+        width: 10px;
+        height: 10px;
+      }
+
+      #css-only {
+        font-size: 4rem;
+        line-height: 4rem;
+        position: absolute;
+        top: 250px;
+        left: 0;
+        width: 10px;
+        height: 10px;
+
+        animation-duration: 2.68s;
+        animation-name: slidein;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        /*animation-direction: alternate;*/
+      }
+
+      @keyframes slidein {
+        from {
+          left: 0;
+        }
+
+        to {
+          left: 800px;
+        }
+      }
+    </style>
+    
+</head>
+
+<body class="ui container">
+    <h1>Demo / Playground</h1>
+
+    <div class="ui right floated">
+      MS Per Animation Frame: <span class="ui label frame-duration"></span>
+    </div>
+
+    <h2>Set Interval</h2>
+    <div id="object">
+      ⛵
+    </div>
+
+    <h2>Request Animation Frame</h2>
+    <div id="other">
+      🚌
+    </div>
+
+    <h2>CSS Transitions Only</h2>
+    <div id="css-only">
+      🐈
+    </div>
+
+    <script type="module">
+      const rateEl = document.querySelector('.frame-duration');
+      let rateInMs = 0;
+      let lastTs = 0;
+
+      const fn = (ts) => {
+        const rateInMs = ts - lastTs;
+        lastTs = ts;
+        rateEl.innerHTML = rateInMs.toPrecision(6);
+
+        window.requestAnimationFrame(fn);
+      };
+      window.requestAnimationFrame(fn);
+
+
+
+      console.log('Main Thread: 1');
+      setTimeout(() => console.log('Timeout 1'), 0);
+      setTimeout(() => console.log('Timeout 2'), 0);
+      setTimeout(() => console.log('Timeout 3'), 0);
+      window.requestAnimationFrame(() => console.log('RAF 1'));
+      window.requestAnimationFrame(() => console.log('RAF 2'));
+      window.requestAnimationFrame(() => console.log('RAF 3'));
+      Promise.resolve().then(() => console.log('Promise 1'));
+      Promise.resolve().then(() => console.log('Promise 2'));
+      Promise.resolve().then(() => console.log('Promise 3'));
+
+      console.log('Main Thread: 1');
+      setTimeout(() => console.log('Timeout 1'), 0);
+      setTimeout(() => console.log('Timeout 2'), 0);
+      setTimeout(() => console.log('Timeout 3'), 0);
+      window.requestAnimationFrame(() => console.log('RAF 1'));
+      window.requestAnimationFrame(() => console.log('RAF 2'));
+      window.requestAnimationFrame(() => console.log('RAF 3'));
+      Promise.resolve().then(() => console.log('Promise 1'));
+      Promise.resolve().then(() => console.log('Promise 2'));
+      Promise.resolve().then(() => console.log('Promise 3'));
+    </script>
+
+    <script type="module">
+      const elem = document.getElementById('object');
+
+      let left = 0;
+      let endPosition = 800;
+      let increment = 5;
+        
+      let timer = setInterval(function() {
+        if (left > endPosition) {
+          left = 0;
+        } else {
+          left += increment;
+        }
+        elem.style.left = `${left}px`;
+
+      }, 16); 
+      // Gotcha
+      // An interval of "16ms" is an attempt at redrawing every frame for a 60hz monitor
+      // but this is going to be innacurate for different browsers and monitors
+    </script>
+
+    <script type="module">
+      const elem = document.getElementById('other');
+
+      var rect = elem.getBoundingClientRect();
+      console.log(rect.top, rect.right, rect.bottom, rect.left);
+
+      let start = rect.left;
+      let left = start;
+      let endPosition = 800;
+      let increment = 5;
+        
+      // Move the element on the right at ~600px/s
+      const step = function(timestamp) {
+        if (left > endPosition) {
+          left = start;
+        } else {
+          left += increment;
+        }
+
+        elem.style.left = `${left}px`;
+
+        //elem.style.transform = 'translateX(' + increment + 'px)';
+
+        window.requestAnimationFrame(step);
+      }
+
+      window.requestAnimationFrame(step);
+    </script>
+</body>
+
+</html>
