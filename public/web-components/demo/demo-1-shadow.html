@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Targeted Topics - Web Components</title>
+  <meta charset="utf8" />
+  <link href="/vendor/semantic-ui/semantic.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="ui container">
+  <h1>Demo / Playground</h1>
+
+  <h2>Rainbow buttons...</h2>
+
+  <rainbow-button>Click me!</rainbow-button>
+
+  <script type="text/javascript">
+
+    class RainbowButton extends HTMLElement {
+      constructor() {
+        super();
+        const originalTextContent = this.textContent;
+
+        // Switching it up for a Shadow DOM
+        this.attachShadow({mode: 'open'});
+
+        const el = document.createElement('p');
+        el.textContent = `🌈 ${originalTextContent}🌈 `;
+        this.shadowRoot.appendChild(el);
+      }
+    }
+
+    customElements.define('rainbow-button', RainbowButton);
+  </script>
+
+</body>
+
+</html>
