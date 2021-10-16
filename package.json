@@ -4,15 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine",
-    "test:objects": "jasmine --filter='Exercise 2'",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
     "objects:1": "node src/objects/exercise-1.js",
-    "objects:2": "jasmine spec/objects/exercise-2.spec.js"
+    "objects:2": "node --experimental-vm-modules node_modules/jest/bin/jest.js spec/objects/calculator.spec.js"
   },
   "author": "Ryan Morris",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
-    "jasmine": "^3.5.0",
+    "jest": "^26.6.3",
+    "jest-fetch-mock": "^3.0.3",
     "semantic-ui-css": "^2.4.1"
   },
   "devDependencies": {}

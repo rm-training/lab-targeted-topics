@@ -47,9 +47,7 @@ class Calculator {
   // and then some inherited methods: push, add, mul, get
 }
 
-// we're doing CommonJS modules here for simplicity with Node
-module.exports = Calculator;
-
+export default Calculator;
 
 /**
  * There be code cheats below! Use them to speed up the pace if you like.

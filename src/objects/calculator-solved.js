@@ -35,5 +35,4 @@ class Calculator {
   }
 }
 
-// we're doing CommonJS modules here for simplicity with Node
-module.exports = Calculator;
+export default Calculator;

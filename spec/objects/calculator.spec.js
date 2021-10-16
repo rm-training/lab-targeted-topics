@@ -1,5 +1,6 @@
+import Calculator from "../../src/objects/calculator-solved.js";
+
 describe("Targeted Topics - Objects - Exercise 2", function () {
-  const Calculator = require("../../src/objects/exercise-2-solved.js");
 
   it("Should provide a Calculator function", function () {
     expect(typeof Calculator).toBe("function");
