@@ -1,4 +1,4 @@
-import { Shape, Rectangle } from "../../public/modern-js/exercise-2-solved.js";
+import { Shape, Rectangle } from "../../public/modern-js/exercise-2.js";
 
 describe("Constructor Functions Exercise", function () {
   it("Shape and Rectangle should be constructable", () => {

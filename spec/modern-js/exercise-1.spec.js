@@ -1,4 +1,4 @@
-import results from "../../public/modern-js/exercise-1-solved.js";
+import results from "../../public/modern-js/exercise-1.js";
 
 describe("Constructor Functions Exercise", function () {
   it("Should pass exercise 1", () => {

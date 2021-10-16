@@ -1,4 +1,4 @@
-import { getArtists } from "../../public/dom/js/exercise-2-solved.js";
+import { getArtists } from "../../public/dom/js/exercise-2.js";
 import fetchMock from "jest-fetch-mock";
 
 fetchMock.enableMocks();

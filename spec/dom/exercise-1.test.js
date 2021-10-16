@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import findTheFlags from "../../public/dom/js/exercise-1-solved.js";
+import findTheFlags from "../../public/dom/js/exercise-1.js";
 import fs from "fs";
 import path from "path";
 import { JSDOM } from "jsdom";
