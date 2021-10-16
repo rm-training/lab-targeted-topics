@@ -1,12 +1,13 @@
 {
-  "name": "tt-objects",
+  "name": "lab-targeted-topics",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jasmine",
-    "exercise-1": "node src/exercise-1.js",
-    "exercise-2": "jasmine spec/exercise-2.spec.js"
+    "test:objects": "jasmine --filter='Exercise 2'",
+    "objects:1": "node src/objects/exercise-1.js",
+    "objects:2": "jasmine spec/objects/exercise-2.spec.js"
   },
   "author": "Ryan Morris",
   "license": "ISC",
