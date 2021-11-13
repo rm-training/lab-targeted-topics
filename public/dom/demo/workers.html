@@ -42,6 +42,8 @@
         result.textContent = e.data;
         console.log('Message received from worker');
       }
+      // better:
+      // myWork.addEventListener('message', () => {});
     </script>
 </body>
 </html>

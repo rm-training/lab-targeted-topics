@@ -1,26 +1,27 @@
 <!doctype html>
 <html lang="en">
+    <head>
+        <title>Targeted Topics - Async JS</title>
+        <meta charset="utf8" />
+        <link href="/vendor/semantic-ui/semantic.min.css" rel="stylesheet" type="text/css" />
 
-<head>
-    <title>Targeted Topics - Async JS</title>
-    <meta charset="utf8" />
-    <link href="/vendor/semantic-ui/semantic.min.css" rel="stylesheet" type="text/css" />
+        <script async src="demo-1-a.js"></script>
+        <script defer src="demo-1-b.js"></script>
+        <script defer src="demo-1-c.js"></script>
+    </head>
 
-    <script src="demo-1-a.js"></script>
-     <!-- what if we "defer" b? -->
-    <script src="demo-1-b.js"></script>
-    <script src="demo-1-c.js"></script>
-</head>
+    <body class="ui container">
+        <h1 id="header">Demo / Playground</h1>
 
-<body class="ui container">
-    <h1>Demo / Playground</h1>
+        <h2>Script load order</h2>
 
-    <h2>Script load order</h2>
+        <script>
+            console.group("Main Script");
 
-    
-    <script>
-        document.querySelector('h1'); // this would work fine...
-        console.log('Last hello...');
-    </script>
-</body>
+            const h1 = document.querySelector('h1'); 
+            console.log("Selected H1", h1);
+
+            console.groupEnd("Main Script");
+        </script>
+    </body>
 </html>
